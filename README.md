@@ -175,6 +175,7 @@ Afterwards you can find the native executable as well as an installer for your p
 * The starting year of the simulation is currently hard-set in the SimulationParameters class (FIRST\_YEAR = 2019).
 * When data is exported using the GUI (either \*.csv or \*.xlsx file format), the SEED for the particular simulation run is appended at the name of the file name.
 * The possible renovation level transitions for the "Heating System Exchange Control Matrix" are 0 to 1, 0 to 2, and 1 to 2. The renovation level transitions from 0 to 2 and 1 to 2 have the same rate of change.
+* Note that the transition to the district heating system is dependant upon the dt_fw_dist field in the DB, which holds values of 0 (more than 50m. from an existing pipeline) and 1 (less than 50m to an existing pipeline). The user can reclassify the field and control the behaviour. Internally, the transition matrix is taken as it is on input for the buildings with a value of 1 in this field. For the others the district heating probability is set to 0 and the rest of the values are normalized. This means that the final split of the heating systems might not be the same as the split given in the input matrix. The reason for this was to avoid the occurance of single buildings with district heating in areas without grids.
 * Below is a small table showcasing the different acronyms used for the Renovation Levels.
 #### Acronyms for Renovation Levels
 | UI Table ENUMs    | Other names          | Type                | Description            |
